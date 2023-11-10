@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Lab_04.Models.User>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Users"</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+<body>
+    <table cellpadding="5">
+        <tr>
+            <th>UserID</th>
+            <th>UserName</th>
+            <th>UserPassword</th>
+            <th>Email</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+        </tr>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.UserName</td>
+                <td>@user.UserPassword</td>
+                <td>@user.Email</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+            </tr>
+        }
+    </table>
+    <a href="https://localhost:7043/NoteStatuses/Index">NoteStatuses</a>
+    <br />
+    <a href="https://localhost:7043/NoteTags/Index">NoteTags</a>
+    <br />
+    <a href="https://localhost:7043/Users/Index">Users</a>
+    <br />
+    <a href="https://localhost:7043/SubNotes/Index">SubNotes</a>
+    <br />
+    <a href="https://localhost:7043/Notes/Index">Notes</a>
+    <br />
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+
+}
+
+@model IEnumerable<Lab_04.Models.Note>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Notes"</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+<body>
+    <table cellpadding="5">
+        <tr>
+            <th>NoteID</th>
+            <th>Title</th>
+            <th>NoteDescription</th>
+            <th>UserID</th>
+            <th>TagID</th>
+            <th>NoteStatusID</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>CreateTime</th>
+        </tr>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.NoteId</td>
+                <td>@note.Title</td>
+                <td>@note.NoteDescription</td>
+                <td>@note.User.FirstName @note.User.LastName</td>
+                <td>@note.Tag.TagName</td>
+                <td>@note.NoteStatus.StatusName</td>
+                <td>@note.StartTime</td>
+                <td>@note.EndTime</td>
+                <td>@note.CreateDate</td>
+            </tr>
+        }
+    </table>
+    <a href="https://localhost:7043/NoteStatuses/Index">NoteStatuses</a>
+    <br />
+    <a href="https://localhost:7043/NoteTags/Index">NoteTags</a>
+    <br />
+    <a href="https://localhost:7043/Users/Index">Users</a>
+    <br />
+    <a href="https://localhost:7043/SubNotes/Index">SubNotes</a>
+    <br />
+    <a href="https://localhost:7043/Notes/Index">Notes</a>
+    <br />
+</body>
+</html>

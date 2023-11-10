@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Lab_04.Models.SubNote>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Sub Notes"</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+<body>
+    <table cellpadding="5">
+        <tr>
+            <th>SubNoteId</th>
+            <th>NoteId</th>
+            <th>SubNoteDescription</th>
+            <th>IsCompleted</th>
+        </tr>
+        @foreach (var subNote in Model)
+        {
+            <tr>
+                <td>@subNote.SubNoteId</td>
+                <td>@subNote.Note.Title</td>
+                <td>@subNote.SubNoteDescription</td>
+                <td>@subNote.IsCompleted</td>
+            </tr>
+        }
+    </table>
+    <a href="https://localhost:7043/NoteStatuses/Index">NoteStatuses</a>
+    <br />
+    <a href="https://localhost:7043/NoteTags/Index">NoteTags</a>
+    <br />
+    <a href="https://localhost:7043/Users/Index">Users</a>
+    <br />
+    <a href="https://localhost:7043/SubNotes/Index">SubNotes</a>
+    <br />
+    <a href="https://localhost:7043/Notes/Index">Notes</a>
+    <br />
+</body>
+</html>

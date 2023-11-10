@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+
+}
+
+@model IEnumerable<Lab_04.Models.NoteTag>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Note Tags"</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+<body>
+    <table cellpadding="5">
+        <tr>
+            <th>TagID</th>
+            <th>Tage Name</th>
+        </tr>
+        @foreach (var tag in Model)
+        {
+            <tr>
+                <td>@tag.TagId</td>
+                <td>@tag.TagName</td>
+            </tr>
+        }
+    </table>
+    <a href="https://localhost:7043/NoteStatuses/Index">NoteStatuses</a>
+    <br />
+    <a href="https://localhost:7043/NoteTags/Index">NoteTags</a>
+    <br />
+    <a href="https://localhost:7043/Users/Index">Users</a>
+    <br />
+    <a href="https://localhost:7043/SubNotes/Index">SubNotes</a>
+    <br />
+    <a href="https://localhost:7043/Notes/Index">Notes</a>
+    <br />
+</body>
+</html>
