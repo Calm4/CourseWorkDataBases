@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Work\\Projekts\\DataBases\\Lab_05\\Lab_05\\Lab_05\\Lab_05.csproj": {}
+    "D:\\Work\\Projekts\\DataBases\\GitPath\\CourseWorkDataBases\\Lab_05\\Lab_05\\Lab_05.csproj": {}
   },
   "projects": {
-    "D:\\Work\\Projekts\\DataBases\\Lab_05\\Lab_05\\Lab_05\\Lab_05.csproj": {
+    "D:\\Work\\Projekts\\DataBases\\GitPath\\CourseWorkDataBases\\Lab_05\\Lab_05\\Lab_05.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\Projekts\\DataBases\\Lab_05\\Lab_05\\Lab_05\\Lab_05.csproj",
+        "projectUniqueName": "D:\\Work\\Projekts\\DataBases\\GitPath\\CourseWorkDataBases\\Lab_05\\Lab_05\\Lab_05.csproj",
         "projectName": "Lab_05",
-        "projectPath": "D:\\Work\\Projekts\\DataBases\\Lab_05\\Lab_05\\Lab_05\\Lab_05.csproj",
+        "projectPath": "D:\\Work\\Projekts\\DataBases\\GitPath\\CourseWorkDataBases\\Lab_05\\Lab_05\\Lab_05.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\Work\\Projekts\\DataBases\\Lab_05\\Lab_05\\Lab_05\\obj\\",
+        "outputPath": "D:\\Work\\Projekts\\DataBases\\GitPath\\CourseWorkDataBases\\Lab_05\\Lab_05\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Work\\Programs\\Visual Studio 2022\\Shared\\NuGetPackages"
