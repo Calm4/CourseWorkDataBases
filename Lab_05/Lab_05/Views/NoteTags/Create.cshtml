@@ -1,0 +1,43 @@
+﻿@model Lab_05.ViewModels.NoteTagsViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Tags</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+    button {
+                       background-color: #d48b17;
+                       border: 1px solid #000000;
+                       width: 120px;
+                       color: white;
+                       cursor: pointer;
+                   } 
+                    input[type="submit"] {
+                               padding: 10px 20px;
+                               background-color: #d48b17;
+                               border: 1px solid #000000;
+                               color: white;
+                               cursor: pointer;
+                           }
+</style>
+<body>
+    <h2>Create Tag</h2>
+
+    <form asp-controller="NoteTags" asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="TagName">Tag Name:</label>
+            <input asp-for="TagName" type="text" id="tagName" name="TagName" class="form-control" required>
+        </div>
+        <button type="submit" class="">Create</button>
+    </form>
+</body>
+</html>

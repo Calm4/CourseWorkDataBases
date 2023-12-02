@@ -1,0 +1,356 @@
+﻿@model Lab_05.ViewModels.CurrentNoteViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Заметка</title>
+    <style>
+        .upperContainer {
+            background-color: #e9edf5;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .BackPage {
+            width: 100%;
+        }
+
+
+        .LeftPartOfContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .TitleDiv {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .DescriptionDiv {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .RightPartOfContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .StatusAndTagDiv {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .StatusDiv,
+        .TagDiv {
+            font-size: 14px;
+            padding: 6px 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .StatusDiv {
+            background-color: #32a852; /* Зеленый цвет фона для статуса */
+        }
+
+        .TagDiv {
+            background-color: #ffa500; /* Оранжевый цвет фона для тега */
+        }
+
+        .StartTimeDiv,
+        .EndTimeDiv,
+        .CreateTimeDiv {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .subnote {
+            width: 30%;
+            min-height: 40%;
+            float: left;
+            background-color: #e6e6e6;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        .subnote-add {
+            width: 30%;
+            min-height: 40%;
+            float: left;
+            background-color: #e6e6e6;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        .subnote-add-button {
+            background-color: wheat;
+            margin: 20px auto 20px;
+            width: 85%;
+            display: block;
+        }
+
+        .subnote-green {
+            background-color: #a6f2b8; /* Зеленый цвет фона */
+        }
+
+        .subnote-red {
+            background-color: #ff7a66; /* Красный цвет фона */
+        }
+
+        .back-page {
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            width: 100%;
+        }
+
+        .subNoteDescription {
+            width: 100%;
+            flex-grow: 1;
+            margin: 10px;
+        }
+
+        .subNoteTextArea {
+            width: 90%;
+        }
+
+        .subnote-isComplete {
+            width: auto;
+            height: auto;
+            margin-top: 50px;
+            transform: scale(1.5);
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            transform: scale(1.5);
+        }
+
+        .subnote-edit-delete {
+            width: 100%;
+            height: 100%;
+        }
+
+            .subnote-edit-delete button {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 16px;
+                height: 16px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 0;
+                margin-bottom: 0;
+                display: block;
+                line-height: 0;
+            }
+
+        .subnote-actions button {
+            background-color: transparent;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 16px;
+            height: 16px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .checkBoxLabel {
+            width: 45%;
+            float: left;
+        }
+
+        .subNoteCheckbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        textarea {
+            background-color: #e9d8a6;
+        }
+
+    </style>
+</head>
+<body>
+<div class="mainContainer">
+    <div class="upperContainer">
+        <div class="LeftPartOfContainer">
+            <div class="BackPage">
+                <form style="width:100%; margin-bottom: 5px;" asp-action="Index" method="get">
+                    <button class="back-page" type="submit">Вернуться</button>
+                </form>
+            </div>
+            <div class="TitleDiv">
+                @Model.Note.Title
+            </div>
+            <div class="DescriptionDiv">
+                @Model.Note.NoteDescription
+            </div>
+        </div>
+        <div class="RightPartOfContainer">
+            <div class="StatusAndTagDiv">
+                <div class="StatusDiv">
+                    @Model.Note.NoteStatus.StatusName
+                </div>
+                <div class="TagDiv">
+                    @Model.Note.NoteTag.TagName
+                </div>
+            </div>
+            <div class="StartTimeDiv">
+                Start @Model.Note.StartTime
+            </div>
+            <div class="EndTimeDiv">
+                End @Model.Note.EndTime
+            </div>
+            <div class="CreateTimeDiv">
+                Create @Model.Note.CreateDate
+            </div>
+        </div>
+    </div>
+    <div class="lowerContainer">
+        <div class="SubNotes">
+            <div class="subnote-add">
+                <form action="CurrentNote" method="post">
+                    <div>
+                        <input type="hidden" name="noteId" value="@Model.NoteId"/>
+                    </div>
+                    <div class="subnote-description form-control">
+                        <textarea class="form-control" type="text" name="subNoteDescription" placeholder="Введите описание подзаметки"></textarea>
+                    </div>
+                    <div>
+                        <button class="form-control subnote-add-button" type="submit">Добавить подзаметку</button>
+                    </div>
+                </form>
+            </div>
+            @for (int i = 0; i < Model.Note.SubNotes.Count; i++)
+            {
+                #region
+
+@* var subNote = Model.Note.SubNotes.ElementAt(i); // Получение отдельного элемента SubNote
+
+                <div class="subnote">
+                <div class="subnote-body">
+                <div class="subnote-text">
+                <div class="subnote-description">
+                <textarea type="hidden" class="form-control" name="SubNotes[@i].SubNoteDescription" placeholder="Description">@subNote.SubNoteDescription</textarea>
+                </div>
+                <div class="subnote-isComplete">
+                <input type="hidden" name="SubNotes[@i].IsCompleted" placeholder="IsComplete" @((bool)subNote.IsCompleted ? "checked" : "") />
+                </div>
+                </div>
+                <div class="subnote-actions">
+                <div class="subnote-delete">
+                <form asp-action="DeleteSubNote" asp-route-id="@subNote.SubNoteId" method="post">
+                <button type="submit" style="background-image: url('/images/no.png');"></button>
+                </form>
+                </div>
+                <div class="subnote-edit">
+                <form asp-action="EditSubNote" asp-route-id="@subNote.SubNoteId" method="post">
+                <input type="hidden" name="Id" value="@subNote.SubNoteId" />
+                <input type="hidden" name="NoteId" value="@subNote.NoteId" />
+                <textarea type="text" name="SubNoteDescription">@subNote.SubNoteDescription</textarea>
+                <input type="checkbox" name="IsCompleted" value="@subNote.IsCompleted"/>
+                <button type="submit" style="background-image: url('/images/yes.png');"></button>
+                </form>
+                <form asp-action="DeleteSubNote" asp-route-id="@subNote.SubNoteId" method="post">
+                <button type="submit" style="background-image: url('/images/no.png');"></button>
+                </form>
+                </div>
+                </div>
+                </div>
+                </div> *@
+
+                #endregion
+
+                var subNote = Model.Note.SubNotes.ElementAt(i); // Получение отдельного элемента SubNote
+
+                <div class="subnote">
+                    <div class="subnote-actions">
+                        <div class="subnote-edit-delete">
+                            <form asp-action="EditSubNote" asp-route-id="@subNote.SubNoteId" method="post">
+                                <button asp-action="DeleteSubNote" asp-route-id="@subNote.SubNoteId" type="submit" style="background-image: url('/images/no.png'); float:right;margin-top:-10px; border: 1px solid #808080;"></button>
+                                <input type="hidden" name="Id" value="@subNote.SubNoteId"/>
+                                <input type="hidden" name="NoteId" value="@subNote.NoteId"/>
+                                <div class="subNoteDescription">
+                                    <textarea class="form-control subNoteTextArea" type="text" name="SubNoteDescription">@subNote.SubNoteDescription</textarea>
+                                    <div>
+                                        <label class="checkBoxLabel">Отметка о выполнении:</label>
+                                        <input id="subNoteCheckbox-@i" style="float:left; margin:6px;" class="subNoteCheckbox" type="checkbox" name="IsCompleted" value="true" @((bool)subNote.IsCompleted ? "checked" : "")/>
+                                    </div>
+                                </div>
+                                <button type="submit" style="background-image: url('/images/yes.png'); margin-left: 96%; border: 1px solid #808080; "></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+
+        function OnInput() {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        }
+
+        // Получение всех элементов с классом "subnote"
+        const subnotes = document.getElementsByClassName("subnote");
+
+        // Перебор всех подзаметок
+        for (let i = 0; i < subnotes.length; i++) {
+            const subnote = subnotes[i];
+
+            // Получение чекбокса и описания подзаметки для текущей подзаметки
+            const checkbox = subnote.querySelector("input[type='checkbox']");
+            const description = subnote.querySelector(".subnote-description");
+
+            // При изменении состояния чекбокса
+            checkbox.addEventListener("change", function () {
+                if (this.checked) {
+                    // Если чекбокс отмечен, делаем фон зеленым
+                    description.classList.add("subnote-green");
+                    description.classList.remove("subnote-red");
+                } else {
+                    // Если чекбокс не отмечен, делаем фон красным
+                    description.classList.remove("subnote-green");
+                    description.classList.add("subnote-red");
+                }
+            });
+        }
+        document.querySelectorAll('.subnote input[type="checkbox"]').forEach(function (checkbox) {
+            var subnote = checkbox.closest('.subnote');
+            if (checkbox.checked) {
+                subnote.classList.add('subnote-green');
+            } else {
+                subnote.classList.add('subnote-red');
+            }
+
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    subnote.classList.remove('subnote-red');
+                    subnote.classList.add('subnote-green');
+                } else {
+                    subnote.classList.remove('subnote-green');
+                    subnote.classList.add('subnote-red');
+                }
+            });
+        });
+
+    });
+</script>

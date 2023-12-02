@@ -1,0 +1,46 @@
+﻿@model Lab_05.ViewModels.EditNoteTagViewModel
+
+@{
+    ViewBag.Title = "Изменение тэга";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Изменение тэга</title>
+    <style>
+       button {
+                   background-color: #d48b17;
+                   border: 1px solid #000000;
+                   width: 120px;
+                   color: white;
+                   cursor: pointer;
+               } 
+                input[type="submit"] {
+                           padding: 10px 20px;
+                           background-color: #d48b17;
+                           border: 1px solid #000000;
+                           color: white;
+                           cursor: pointer;
+                       }
+    </style>
+</head>
+<body>
+<div>
+    <div>
+        <form asp-controller="NoteTags" asp-action="Edit">
+            <h2 class="display-6">Изменение заметки</h2>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id"/>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagName">Тэг</label>
+                <input type="text" asp-for="TagName" class=""/>
+            </div>
+            <button type="submit">Изменить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Notes";
+
+}
+
+@model Lab_05.ViewModels.NotesViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Notes"</title>
+    <style>
+
+        .main-div {
+        }
+
+        .table-cell {
+            background-color: #f2cc8f;
+        }
+
+        .table-cell-header {
+            background-color: #e8a435;
+        }
+
+        .filter-field {
+            background-color: #e8a435;
+            color: white;
+        }
+
+        .card-block {
+            margin-top: 10px;
+            background-color: #e9d8a6;
+            border-color: #e9d8a6;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        ::placeholder {
+            color: #ffffff;
+        }
+
+        button {
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            width: 120px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button-background {
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            color: white;
+        }
+
+        li {
+        }
+
+        .label-class {
+            width: 150px;
+        }
+
+        .input-field {
+            width: 200px;
+            height: 40px;
+        }
+
+        .first-block {
+            width: 650px;
+            display: table-cell;
+        }
+
+        .second-block {
+            width: 645px;
+            display: table-cell;
+        }
+
+        .block-container {
+            width: 1295px;
+        }
+
+        .custom-nav {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+            .custom-nav .nav-item {
+                margin-right: 10px;
+            }
+
+            .custom-nav .ml-auto {
+                margin-left: auto;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="containter">
+        <div class="card main-div" style="display:table; background-color: #f2cc8f;">
+            <form method="get">
+                <div class="card-header text-center">
+                    <ul class="nav nav-pills card-header-pills custom-nav">
+                        <li class="nav-item">
+                            <input type="submit" value="Поиск" />
+                        </li>
+                        <li class="nav-item">
+                            <input type="submit" asp-action="Create" value="Добавить" />
+                        </li>
+                        <li class="nav-item ml-auto">
+                            <input type="submit" asp-action="SelectWeek" value="Получить заметки на эту неделю" />
+                        </li>
+                        <li class="nav-item">
+                            <input type="submit" asp-action="SelectDay" value="Получить заметки в порядке дедлайна" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="block-container ">
+                    <div class="card-body first-block ">
+                        <div class="form-inline">
+                            <div class="col ">
+                                <label class="label-class ">Статус: </label>
+                                <select class="input-field filter-field" name="NoteStatus" asp-items="Model.FilterNotesViewModel.NoteStatuses"></select>
+                            </div>
+                            <div class="col">
+                                <label class="label-class">Тэг: </label>
+                                <select class="input-field filter-field" name="NoteTag" asp-items="Model.FilterNotesViewModel.NoteTags"></select>
+                            </div>
+                            <div class="col">
+                                <label class="label-class">Заголовок заметки: </label>
+                                <input class="input-field filter-field" name="Title" placeholder="Название" value="@Model.FilterNotesViewModel.SelectedTitle" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body second-block">
+                        <div class="form-inline">
+                            <div class="col">
+                                <label class="label-class">Дата начала: </label>
+                                @Html.EditorFor(model => model.StartDateTime, "{0:dd/MM/yyyy HH:mm}", new { htmlAttributes = new { @class = "input-field filter-field", @name = "StartTime" } })
+                            </div>
+                            <div class="col">
+                                <label class="label-class">Дата окончания: </label>
+                                @Html.EditorFor(model => model.EndDateTime, "{0:dd/MM/yyyy HH:mm}", new { htmlAttributes = new { @class = "input-field filter-field" } })
+                            </div>
+                            <div class="col">
+                                <label class="label-class">Дата создания: </label>
+                                @Html.EditorFor(model => model.CreateDateTime, "{0:dd/MM/yyyy HH:mm}", new { htmlAttributes = new { @class = "input-field filter-field" } })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="card card-block">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                        <tr class="table-cell-header">
+                            <th>In</th>
+                            <th>Заголовок</th>
+                            <th>Описание</th>
+                            <th>Тэг</th>
+                            <th>Статус</th>
+                            <th>Дата начала</th>
+                            <th>Дата окончания</th>
+                            <th>Дата создания</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var note in Model.Notes)
+                        {
+                            <tr class="table-cell">
+                                <td>
+                                    <form asp-action="CurrentNote" asp-route-id="@note.NoteId" method="get">
+                                        <button type="submit">Перейти</button>
+                                    </form>
+                                </td>
+                                <td>@(note.Title.Length > 20 ? note.Title.Substring(0, 20) + "..." : note.Title)</td>
+                                <td>@(note.NoteDescription.Length > 20 ? note.NoteDescription.Substring(0, 20) + "..." : note.NoteDescription)</td>
+                                <td>@note.NoteTag.TagName</td>
+                                <td>@note.NoteStatus.StatusName</td>
+                                <td>@note.StartTime</td>
+                                <td>@note.EndTime</td>
+                                <td>@note.CreateDate</td>
+                                <td>
+                                    <form asp-action="Edit" asp-route-id="@note.NoteId" method="get">
+                                        <button type="submit">Изменить</button>
+                                    </form>
+                                    <form asp-action="Delete" asp-route-id="@note.NoteId" method="post">
+                                        <button type="submit">Удалить</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <nav style="margin-top: 10px">
+            <ul class="pagination justify-content-end">
+                @{
+                    var previousPageClass = Model.PageViewModel.HasPreviousPage ? "" : "disabled";
+                    var nextPageClass = Model.PageViewModel.HasNextPage ? "" : "disabled";
+                }
+                <li class="page-item @previousPageClass">
+                    <form asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber-1)"
+                          asp-route-notestatus="@(Model.FilterNotesViewModel.SelectedStatus)"
+                          asp-route-notetag="@(Model.FilterNotesViewModel.SelectedTag)"
+                          asp-route-title="@Model.FilterNotesViewModel.SelectedTitle">
+
+                        <button type="submit" class="page-link button-background">
+                            Предыдущая
+                        </button>
+                    </form>
+                </li>
+                <li class="page-item @nextPageClass">
+                    <form asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber+1)"
+                          asp-route-notestatus="@(Model.FilterNotesViewModel.SelectedStatus)"
+                          asp-route-notetag="@(Model.FilterNotesViewModel.SelectedTag)"
+                          asp-route-title="@Model.FilterNotesViewModel.SelectedTitle">
+                        <button type="submit" class="page-link button-background">
+                            Следующая
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

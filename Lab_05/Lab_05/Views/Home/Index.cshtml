@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>User</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .logged-in-user {
+            height: 100px;
+            font-size: 40px;
+            background-color: #dea65f;
+;
+        }
+
+        .form-container {
+            margin-top: 20px;
+            float: right;
+            margin-right: 20px;
+        }
+
+        .login-register-container {
+            margin-top: 20px;
+        }
+
+        .login-register-container a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #d48b17;
+            color: white;
+            text-decoration: none;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #d48b17;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="container">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div>
+            <p class="logged-in-user">Добро пожаловать, <b>@User.Identity.Name!</b></p>
+            <form method="post" asp-controller="Account" asp-action="Logout" class="form-container">
+                <input type="submit" value="Выход" class="checke"/>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div class="login-register-container">
+            <a asp-controller="Account" asp-action="Login">Вход</a>
+            <a asp-controller="Account" asp-action="Register">Регистрация</a>
+        </div>
+    }
+</div>
+</body>
+</html>

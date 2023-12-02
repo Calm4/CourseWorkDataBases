@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Lab_05.Models.SubNote>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Sub Notes"</title>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+</style>
+</head>
+<body>
+    <table cellpadding="5">
+        <tr>
+            <th>SubNoteId</th>
+            <th>NoteId</th>
+            <th>SubNoteDescription</th>
+            <th>IsCompleted</th>
+        </tr>
+        @foreach (var subNote in Model)
+        {
+            <tr>
+                <td>@subNote.SubNoteId</td>
+                <td>@subNote.Note.Title</td>
+                <td>@subNote.SubNoteDescription</td>
+                <td>@subNote.IsCompleted</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>

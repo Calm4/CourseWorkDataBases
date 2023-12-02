@@ -1,0 +1,64 @@
+﻿@model Lab_05.ViewModels.NoteTagsViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Tags</title>
+</head>
+<style>
+    button {
+       background-color: #d48b17;
+       border: 1px solid #000000;
+       width: 120px;
+       color: white;
+       cursor: pointer;
+    } 
+     input[type="submit"] {
+                padding: 10px 20px;
+                background-color: #d48b17;
+                border: 1px solid #000000;
+                       color: white;
+                       cursor: pointer;
+    }
+    table {
+               border-collapse: collapse;
+           }
+    
+           th, td {
+               border: 1px solid black;
+               padding: 8px;
+           }
+</style>
+<body>
+<h2>Tag List</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tag Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var tag in Model.Tags)
+    {
+        <tr>
+            <td>@tag.NoteTagId</td>
+            <td>@tag.TagName</td>
+            <td>
+                <form asp-action="Edit" asp-route-id="@tag.NoteTagId" method="get">
+                    <button type="submit">Изменить</button>
+                </form>
+                <form asp-action="Delete" asp-route-id="@tag.NoteTagId" method="post">
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<form method="post" class="form-contol">
+    <input type="submit" asp-controller="NoteTags" asp-action="Create" value="Добавить"/>
+</form>
+</body>
+</html>
