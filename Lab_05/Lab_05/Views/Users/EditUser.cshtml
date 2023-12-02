@@ -1,0 +1,41 @@
+﻿@model Lab_05.ViewModels.EditUserViewModel
+
+@{
+    ViewBag.Title = "Редактирование пользователя";
+}
+
+<form asp-action="EditUser" asp-controller="Users">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="UserName" class="control-label">Логин</label>
+        <input type="text" asp-for="UserName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">Email</label>
+        <input type="text" asp-for="Email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Имя</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label">Фамилия</label>
+        <input type="text" asp-for="Surname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="" >Изменить</button>
+    </div>
+</form>
+<style>
+     button {
+                                   background-color: #d48b17;
+                                   border: 1px solid #000000;
+                                   width: 120px;
+                                   height: 30px;
+                                   color: white;
+                                   cursor: pointer;
+                               } 
+</style>

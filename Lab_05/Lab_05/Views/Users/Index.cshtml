@@ -1,0 +1,123 @@
+﻿@model Lab_05.ViewModels.UsersViewModel
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Users";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>"Users"</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .bob {
+            padding: 0 0 0 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .tututu {
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button-background {
+                    background-color: #d48b17;
+                    border: 1px solid #000000;
+                    color: white;
+                }
+                
+        button {
+            background-color: #d48b17;
+            border: 1px solid #000000;
+            width: 100%;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="CreateUser" method="get">
+        <button type="submit">Добавить нового пользователя</button>
+    </form>
+    <br />
+    <form method="post" asp-action="Index" asp-route-page="@Model.PageViewModel.PageNumber">
+        <div class="col">
+            <input class="" name="userName" placeholder="Имя пользователя" value="@Model.FilterUsersViewModel.UserName" />
+            <button type="submit">Поиск</button>
+        </div>
+    </form>
+    <table cellpadding="5" style="width:100%;">
+        <tr>
+            <th>UserID</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>FirstName</th>
+            <th>SurName</th>
+            <th>Functions</th>
+        </tr>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>@user.Email</td>
+                <td>@user.FirstName</td>
+                <td>@user.Surname</td>
+                <td>
+                    <form asp-action="EditUser" asp-route-id="@user.Id" method="get">
+                        <button type="submit">Изменить</button>
+                    </form>
+                    <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <nav style="margin-top: 10px">
+        <ul class="pagination justify-content-end">
+            @{
+                var previousPageClass = Model.PageViewModel.HasPreviousPage ? "" : "disabled";
+                var nextPageClass = Model.PageViewModel.HasNextPage ? "" : "disabled";
+            }
+            <li class="page-item @previousPageClass">
+                <form asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber - 1)">
+                    <button type="submit" class="page-link button-background">
+                        Предыдущая
+                    </button>
+                </form>
+            </li>
+            <li class="page-item @nextPageClass">
+                <form asp-action="Index" asp-route-page="@(Model.PageViewModel.PageNumber + 1)">
+                    <button type="submit" class="page-link button-background">
+                        Следующая
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
