@@ -6,7 +6,8 @@
     <title>Заметка</title>
     <style>
         .upperContainer {
-            background-color: #e9edf5;
+            background-color: #f4f4f4;
+            border: 2px solid #474747;
             padding: 10px;
             display: flex;
             align-items: center;
@@ -88,7 +89,7 @@
         }
 
         .subnote-add-button {
-            background-color: wheat;
+            background-color: #f4f4f4;
             margin: 20px auto 20px;
             width: 85%;
             display: block;
@@ -103,8 +104,8 @@
         }
 
         .back-page {
-            background-color: #d48b17;
-            border: 1px solid #000000;
+            background-color: #e7e5e5;
+            border: 1px solid #d1d1d1;
             width: 100%;
         }
 
@@ -230,44 +231,6 @@
             </div>
             @for (int i = 0; i < Model.Note.SubNotes.Count; i++)
             {
-                #region
-
-@* var subNote = Model.Note.SubNotes.ElementAt(i); // Получение отдельного элемента SubNote
-
-                <div class="subnote">
-                <div class="subnote-body">
-                <div class="subnote-text">
-                <div class="subnote-description">
-                <textarea type="hidden" class="form-control" name="SubNotes[@i].SubNoteDescription" placeholder="Description">@subNote.SubNoteDescription</textarea>
-                </div>
-                <div class="subnote-isComplete">
-                <input type="hidden" name="SubNotes[@i].IsCompleted" placeholder="IsComplete" @((bool)subNote.IsCompleted ? "checked" : "") />
-                </div>
-                </div>
-                <div class="subnote-actions">
-                <div class="subnote-delete">
-                <form asp-action="DeleteSubNote" asp-route-id="@subNote.SubNoteId" method="post">
-                <button type="submit" style="background-image: url('/images/no.png');"></button>
-                </form>
-                </div>
-                <div class="subnote-edit">
-                <form asp-action="EditSubNote" asp-route-id="@subNote.SubNoteId" method="post">
-                <input type="hidden" name="Id" value="@subNote.SubNoteId" />
-                <input type="hidden" name="NoteId" value="@subNote.NoteId" />
-                <textarea type="text" name="SubNoteDescription">@subNote.SubNoteDescription</textarea>
-                <input type="checkbox" name="IsCompleted" value="@subNote.IsCompleted"/>
-                <button type="submit" style="background-image: url('/images/yes.png');"></button>
-                </form>
-                <form asp-action="DeleteSubNote" asp-route-id="@subNote.SubNoteId" method="post">
-                <button type="submit" style="background-image: url('/images/no.png');"></button>
-                </form>
-                </div>
-                </div>
-                </div>
-                </div> *@
-
-                #endregion
-
                 var subNote = Model.Note.SubNotes.ElementAt(i); // Получение отдельного элемента SubNote
 
                 <div class="subnote">

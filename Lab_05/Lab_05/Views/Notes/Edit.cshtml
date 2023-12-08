@@ -10,26 +10,30 @@
     <title>"Notes"</title>
     <style>
         .form-cell {
-            background-color: #f7e2be;
+          
         }
 
         button {
             margin-top: 10px;
-            background-color: #d48b17;
-            border: 1px solid #000000;
+            background-color: #e7e5e5;
+            border: 1px solid #d1d1d1;
             width: 150px;
             height: 40px;
-            color: white;
             cursor: pointer;
         }
 
         textarea {
             resize: none;
         }
+        .main-div{
+            padding: 10px;
+            background-color: white;
+            border: 2px solid #474747;
+        }
     </style>
 </head>
 <body>
-    <div style="padding: 10px; background-color: #f2cc8f;">
+    <div class="main-div">
         <form asp-controller="Notes" asp-action="Edit">
             <h2 class="display-6">Изменение заметки</h2>
             <div class="validation" asp-validation-summary="ModelOnly"></div>
