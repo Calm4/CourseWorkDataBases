@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<h2>Список заметок</h2>
+<div id="errors" class="alert alert-danger"></div>
+<form name="noteForm">
+    <input type="hidden" name="noteId" value="0"/>
+    <div class="form-group col-md-5">
+        <label for="title">Заголовок:</label>
+        <input class="form-control" name="title"/>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="noteDescription">Описание:</label>
+        <input class="form-control" name="noteDescription"/>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="userId">Пользователь:</label>
+        <select class="form-control" name="userId" id="userSelect"></select>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="noteStatusId">Статус:</label>
+        <select class="form-control" name="noteStatusId" id="noteStatusSelect"></select>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="noteTagId">Тэг:</label>
+        <select class="form-control" name="noteTagId" id="noteTagSelect"></select>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="createDate">Дата создания:</label>
+        <input type="datetime-local" class="form-control" name="createDate"/>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="startTime">Дата начала:</label>
+        <input type="datetime-local" class="form-control" name="startTime"/>
+    </div>
+    <div class="form-group col-md-5">
+        <label for="endTime">Дата конца:</label>
+        <input type="datetime-local" class="form-control" name="endTime"/>
+    </div>
+    <div class="panel-body">
+        <button type="submit" id="submit" class="btn btn-primaty">Сохранить</button>
+        <a id="reset" class="btn btn-primary">Сбросить</a>
+    </div>
+
+</form>
+<table class="table table-condensed table-striped col-md-6">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Tag</th>
+        <th>Create Date</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<label id="noteLabel">
+</label>
+<script>
+    async function GetNotes() {
+        const response = await fetch("api/notes", {
+            method: "GET",
+            headers: {"Accept": "application/json"}
+        });
+
+        if (response.ok == true) {
+            const notes = await response.json();
+            let rows = document.querySelector("tbody");
+            notes.forEach(note => {
+                rows.append(row(note));
+            })
+        }
+    }
+
+    async function GetNote(id) {
+        const response = await fetch("api/notes/" + id, {
+            method: "GET",
+            headers: {"Accept": "application/json"}
+        });
+
+        if (response.ok == true) {
+            const note = await response.json();
+            const form = document.forms["noteForm"];
+            form.elements["noteId"].value = note.noteId;
+            form.elements["title"].value = note.title;
+            form.elements["noteDescription"].value = note.noteDescription;
+            form.elements["userId"].value = note.userId;
+            form.elements["noteTagId"].value = note.noteTagId;
+            form.elements["noteStatusId"].value = note.noteStatusId;
+            form.elements["startTime"].value = note.startTime;
+            form.elements["endTime"].value = note.endTime;
+            form.elements["createDate"].value = note.createDate;
+        }
+    }
+
+    function row(note) {
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-rowid", note.noteId);
+
+        const idTd = document.createElement("td");
+        idTd.append(note.noteId);
+        tr.append(idTd);
+
+        const titleTd = document.createElement("td");
+        titleTd.append(note.title)
+        tr.append(titleTd)
+
+        const descriptionTd = document.createElement("td");
+        descriptionTd.append(note.noteDescription);
+        tr.append(descriptionTd);
+
+        const userTd = document.createElement("td");
+        userTd.append(note.user.userName);
+        tr.append(userTd);
+
+        const statusTd = document.createElement("td");
+        statusTd.append(note.noteStatus.statusName);
+        tr.append(statusTd);
+
+        const tagTd = document.createElement("td");
+        tagTd.append(note.noteTag.tagName);
+        tr.append(tagTd);
+
+        const createDateTd = document.createElement("td");
+        createDateTd.append(note.createDate);
+        tr.append(createDateTd);
+
+        const startDateTd = document.createElement("td");
+        startDateTd.append(note.startTime);
+        tr.append(startDateTd);
+
+        const endDateTd = document.createElement("td");
+        endDateTd.append(note.endTime);
+        tr.append(endDateTd);
+
+
+        const linksTd = document.createElement("td");
+
+        const editLink = document.createElement("a");
+        editLink.setAttribute("data-id", note.noteId);
+        editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        editLink.append("Изменить");
+        editLink.addEventListener("click", e => {
+            e.preventDefault();
+            GetNote(note.noteId);
+        });
+        linksTd.append(editLink);
+
+        const removeLink = document.createElement("a");
+        removeLink.setAttribute("data-id", note.noteId);
+        removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        removeLink.append("Удалить");
+        removeLink.addEventListener("click", e => {
+
+            e.preventDefault();
+            DeleteNote(note.noteId);
+        });
+
+        linksTd.append(removeLink);
+        tr.appendChild(linksTd);
+
+        return tr;
+
+    }
+
+    
+    function optionUser(user) {
+        const option = document.createElement("option");
+        option.setAttribute("value", user.userId);
+        option.innerHTML = user.userName;
+
+        return option;
+    }
+
+    function optionStatus(status) {
+        const option = document.createElement("option");
+        option.setAttribute("value", status.noteStatusId);
+        option.innerHTML = status.statusName;
+
+        return option;
+    }
+
+    function optionTag(tag) {
+        const option = document.createElement("option");
+        option.setAttribute("value", tag.noteTagId);
+        option.innerHTML = tag.tagName;
+
+        return option;
+    }
+
+    async function GetUserList() {
+        const response = await fetch("api/users", {
+            method: "GET",
+            headers: {"Accept": "application/json"}
+        });
+
+        if (response.ok == true) {
+            const users = await response.json();
+            let userSelect = document.getElementById("userSelect");
+            users.forEach(user => {
+                userSelect.append(optionUser(user));
+            });
+        }
+    }
+
+    async function GetStatusList() {
+        const response = await fetch("api/noteStatuses", {
+            method: "GET",
+            headers: {"Accept": "application/json"}
+        });
+
+        if (response.ok == true) {
+            const users = await response.json();
+            let statusSelect = document.getElementById("noteStatusSelect");
+            users.forEach(status => {
+                statusSelect.append(optionStatus(status));
+            });
+        }
+    }
+
+    async function GetTagList() {
+        const response = await fetch("api/noteTags", {
+            method: "GET",
+            headers: {"Accept": "application/json"}
+        });
+
+        if (response.ok == true) {
+            const users = await response.json();
+            let tagSelect = document.getElementById("noteTagSelect");
+            users.forEach(tag => {
+                tagSelect.append(optionTag(tag));
+            });
+        }
+    }
+
+    
+    
+    function reset() {
+        const form = document.forms["noteForm"];
+        form.reset();
+        form.elements["noteId"].value = 0;
+    }
+
+    document.getElementById("reset").click(function (e) {
+        e.preventDefault();
+        reset();
+    })
+
+    
+    
+    
+    async function CreateNote(title, noteDescription, user, noteTag, noteStatus, startTime, endTime, createDate) {
+        document.getElementById("errors").innerHTML = "";
+        document.getElementById("errors").style.display = "none";
+        const response = await fetch("api/notes", {
+           method: "POST",
+           headers: { "Accept": "application/json", "Content-Type": "application/json"},
+           body: JSON.stringify({
+               title: title,
+               noteDescription: noteDescription,
+               userId: parseInt(user),
+               noteTagId: parseInt(noteTag),
+               noteStatusId: parseInt(noteStatus),
+               startTime: startTime,
+               endTime: endTime,
+               createDate: createDate,
+           }) 
+        });
+        if(response.ok == true){
+            const note = await response.json();
+            reset();
+            document.querySelector("tbody").append(row(note));
+        }
+        else{
+            const errorData = await  response.json();
+            console.log("errors", errorData);
+            if(errorData){
+                if(errorData.errors){
+                    if(errorData.errors["Title"]){
+                        addError(errorData.errors["Title"]);
+                    }
+                    if(errorData.errors["NoteDescription"]){
+                        addError(errorData.errors["NoteDescription"]);
+                    }
+                    if(errorData.errors["User"]){
+                        addError(errorData.errors["User"]);
+                    }
+                    if(errorData.errors["NoteStatusId"]){
+                        addError(errorData.errors["NoteStatusId"]);
+                    }
+                    if(errorData.errors["NoteTagId"]){
+                        addError(errorData.errors["NoteTagId"]);
+                    }
+                    if(errorData.errors["CreateDateId"]){
+                        addError(errorData.errors["CreateDateId"]);
+                    }
+                    if(errorData.errors["StartTime"]){
+                        addError(errorData.errors["StartTime"]);
+                    }
+                    if(errorData.errors["EndTime"]){
+                        addError(errorData.errors["EndTime"]);
+                    }
+                }
+            }
+        }
+    }
+    async function EditNote(noteId, title, noteDescription, user, noteTag, noteStatus, startTime, endTime, createDate) {
+        document.getElementById("errors").innerHTML = "";
+        document.getElementById("errors").style.display = "none";
+        const response = await fetch("api/notes", {
+            method: "PUT",
+            headers: { "Accept": "application/json", "Content-Type": "application/json"},
+            body: JSON.stringify({
+                noteId: noteId,
+                title: title,
+                noteDescription: noteDescription,
+                userId: user,
+                noteTagId: noteTag,
+                noteStatusId: noteStatus,
+                startTime: startTime,
+                endTime: endTime,
+                createDate: createDate,
+            })
+        });
+        if(response.ok == true){
+            const note = await response.json();
+            reset();
+            document.querySelector("tr[data-rowid='" + note.noteId + "']").replaceWith(row(note));
+        }
+        else{
+            const errorData = await response.json();
+            console.log("errors", errorData);
+            if(errorData){
+                if(errorData.errors){
+                    if(errorData.errors["Title"]){
+                        addError(errorData.errors["Title"]);
+                    }
+                    if(errorData.errors["Description"]){
+                        addError(errorData.errors["Description"]);
+                    }
+                    if(errorData.errors["UserId"]){
+                        addError(errorData.errors["UserId"]);
+                    }
+                    if(errorData.errors["NoteStatusId"]){
+                        addError(errorData.errors["NoteStatusId"]);
+                    }
+                    if(errorData.errors["NoteTagId"]){
+                        addError(errorData.errors["NoteTagId"]);
+                    }
+                    if(errorData.errors["CreateDate"]){
+                        addError(errorData.errors["CreateDate"]);
+                    }
+                    if(errorData.errors["StartTime"]){
+                        addError(errorData.errors["StartTime"]);
+                    }
+                    if(errorData.errors["EndTime"]){
+                        addError(errorData.errors["EndTime"]);
+                    }
+                }
+            }
+            document.getElementById("errors").style.display = "block";
+        }
+    }
+
+    async function DeleteNote(id) {
+        const response = await fetch("api/notes/" + id, {
+            method: "DELETE",
+            headers: { "Accept": "application/json" }
+        });
+        if (response.ok == true) {
+            const note = await response.json();
+            document.querySelector("tr[data-rowid='" + note.noteId + "']").remove();
+        }
+    }
+    
+    function  addError(errors) {
+        errors.forEach(error => {
+            const p = document.createElement("p");
+            p.append(error)
+            document.getElementById("errors").append(p)
+        })
+    }
+
+
+        document.forms["noteForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            const form = document.forms["noteForm"];
+            const id = form.elements["noteId"].value;
+            const title = form.elements["title"].value;
+            const noteDescription = form.elements["noteDescription"].value;
+            const user = form.elements["userId"].value;
+            const noteTag = form.elements["noteTagId"].value;
+            const noteStatus = form.elements["noteStatusId"].value;
+            const startTime = form.elements["startTime"].value;
+            const endTime = form.elements["endTime"].value;
+            const createDate = form.elements["createDate"].value;
+            if (id == 0) {
+                CreateNote(title, noteDescription, user, noteTag, noteStatus, startTime, endTime, createDate);
+            } else {
+                EditNote(id, title, noteDescription, user, noteTag, noteStatus, startTime, endTime, createDate);
+            }
+        })
+
+        GetUserList();
+        GetStatusList();
+        GetTagList();
+        GetNotes();
+</script>
+</body>
+</html>

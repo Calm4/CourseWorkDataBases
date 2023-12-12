@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Work\\Projekts\\DataBases\\Lab_06\\Lab_06\\Lab_06\\wwwroot\\notes.html",
+      "PackagePath": "staticwebassets\\notes.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Lab_06.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Lab_06.props",
+      "PackagePath": "build\\Lab_06.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Lab_06.props",
+      "PackagePath": "buildMultiTargeting\\Lab_06.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Lab_06.props",
+      "PackagePath": "buildTransitive\\Lab_06.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

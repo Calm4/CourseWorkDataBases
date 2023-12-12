@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "wEsAszDdnRrBvUJzy3BAVFQIAnHSj5Kbsypc9MFbIaw=",
+  "Source": "Lab_06",
+  "BasePath": "_content/Lab_06",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Lab_06\\wwwroot",
+      "Source": "Lab_06",
+      "ContentRoot": "D:\\Work\\Projekts\\DataBases\\Lab_06\\Lab_06\\Lab_06\\wwwroot\\",
+      "BasePath": "_content/Lab_06",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Work\\Projekts\\DataBases\\Lab_06\\Lab_06\\Lab_06\\wwwroot\\notes.html",
+      "SourceId": "Lab_06",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Work\\Projekts\\DataBases\\Lab_06\\Lab_06\\Lab_06\\wwwroot\\",
+      "BasePath": "_content/Lab_06",
+      "RelativePath": "notes.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\notes.html"
+    }
+  ]
+}

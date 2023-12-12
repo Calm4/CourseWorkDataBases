@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lab_06</name>
+    </assembly>
+    <members>
+        <member name="T:Lab_06.Migrations.ShushakaStart">
+            <inheritdoc />
+        </member>
+        <member name="M:Lab_06.Migrations.ShushakaStart.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Lab_06.Migrations.ShushakaStart.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Lab_06.Migrations.ShushakaStart.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
