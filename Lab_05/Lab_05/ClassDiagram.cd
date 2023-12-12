@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Lab_05.Controllers.AccountController" Collapsed="true">
+    <Position X="1" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAIAAAAAAAAAABAAAIAAAABAAAAAAAUAAAAAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.HomeController" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAIAAAAQAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.NotesController" Collapsed="true">
+    <Position X="6" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAIAAAAAAAAAAAAAAAAAAAECAEgCACFAQAAAAAA=</HashCode>
+      <FileName>Controllers\NotesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.NoteStatusesController" Collapsed="true">
+    <Position X="1" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\NoteStatusesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.NoteTagsController" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAEAAEACAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\NoteTagsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.SubNotesController" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\SubNotesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Controllers.UsersController" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAhAAAAQAAAAAEAAAAAAAAAAAAAAAAAAEAAAAAAgA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.ApplicationUser" Collapsed="true">
+    <Position X="5" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ApplicationUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.Note" Collapsed="true">
+    <Position X="3" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACCAAkAAAAAAAAgAIKAgAAAAAAABEAAAAAA=</HashCode>
+      <FileName>Models\Note.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.NotePlannerDbContext" Collapsed="true">
+    <Position X="1" Y="8.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAAQCAAAAAAAAAAAAEEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\NotePlannerDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.NoteStatus" Collapsed="true">
+    <Position X="1" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAhAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\NoteStatus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.NoteTag" Collapsed="true">
+    <Position X="5" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAA=</HashCode>
+      <FileName>Models\NoteTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.SubNote" Collapsed="true">
+    <Position X="7.5" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAABAAAIAAAAEAIAA=</HashCode>
+      <FileName>Models\SubNote.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Models.User" Collapsed="true">
+    <Position X="7.5" Y="9.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAEAAACAAAAAAAAAAAAgAAAAAAAAAAQAAAAIAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.CreateNoteViewModel" Collapsed="true">
+    <Position X="1" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAJAAAAAAAgEEAAAAAAAAAEAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>ViewModels\CreateNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.CreateTagViewModel" Collapsed="true">
+    <Position X="4" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\CreateTagViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.CreateUserViewModel" Collapsed="true">
+    <Position X="7" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQABAAAAAACAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\CreateUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.CurrentNoteViewModel" Collapsed="true">
+    <Position X="10" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ViewModels\CurrentNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.EditNoteTagViewModel" Collapsed="true">
+    <Position X="10" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\EditNoteTagViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.EditNoteViewModel" Collapsed="true">
+    <Position X="7" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAOAAAAAAAgEEAIAAAAAAAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EditNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.EditSubNoteViewModel" Collapsed="true">
+    <Position X="10" Y="5.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAACAAABAAAIAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EditSubNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.EditUserViewModel" Collapsed="true">
+    <Position X="7" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAAAAAQABAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\EditUserViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.FilterNotesViewModel" Collapsed="true">
+    <Position X="4" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAACAQAQAAAEAgAAAAAAAAAAAAACAQA=</HashCode>
+      <FileName>ViewModels\FilterNotesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.FilterUsersViewModel" Collapsed="true">
+    <Position X="4" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\FilterUsersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.LoginViewModel" Collapsed="true">
+    <Position X="1" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAIQAAAgAAA=</HashCode>
+      <FileName>ViewModels\LoginViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.NotesViewModel" Collapsed="true">
+    <Position X="1" Y="5.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAoEAAAAACAEAAQAAAACAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\NotesViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.NoteTagsViewModel" Collapsed="true">
+    <Position X="4" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAACAA=</HashCode>
+      <FileName>ViewModels\NoteTagsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.RegisterViewModel" Collapsed="true">
+    <Position X="10" Y="6.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAQAhAAAAAACAAAQAAAAAAA=</HashCode>
+      <FileName>ViewModels\RegisterViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.TakeNoteViewModel" Collapsed="true">
+    <Position X="1" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>ViewModels\TakeNoteViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.ViewModels.UsersViewModel" Collapsed="true">
+    <Position X="1" Y="7.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAQAAAACAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>ViewModels\UsersViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.PageViewModel" Collapsed="true">
+    <Position X="7" Y="6.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAgAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\PageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.DbInitilializer" Collapsed="true">
+    <Position X="10" Y="8.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAgBYAICAIgACAQEAAAAAEAEQAgACCoQAU=</HashCode>
+      <FileName>DbInitilializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.DbUserInitializer" Collapsed="true">
+    <Position X="10" Y="7.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAABAgAAAAgBYAIAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>DbUserInitializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lab_05.Startup" Collapsed="true">
+    <Position X="10" Y="9.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Times New Roman" Size="16" />
+</ClassDiagram>
